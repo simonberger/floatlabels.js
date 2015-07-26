@@ -32,7 +32,12 @@
                     settings      = this.settings,
                     transDuration = settings.transitionDuration,
                     transEasing   = settings.transitionEasing,
-                    thisElement   = this.$element;              
+                    thisElement   = this.$element,
+                    elementID,
+                    placeholderText,
+                    floatingText,
+                    extraClasses
+                ;
                 var animationCss = {
                     '-webkit-transition'            : 'all ' + transDuration + 's ' + transEasing,
                     '-moz-transition'               : 'all ' + transDuration + 's ' + transEasing,
@@ -44,16 +49,16 @@
                     thisElement.prop('tagName').toUpperCase() != 'TEXTAREA') { return; }
                 if( thisElement.prop('tagName').toUpperCase() === 'INPUT' &&
                     !settings.typeMatches.test( thisElement.attr('type') ) ) { return; }
-                var elementID = thisElement.attr('id');
+                placeholderText     = thisElement.attr('placeholder');
+                if( typeof(placeholderText) === 'undefined' ) { return; }
+                elementID = thisElement.attr('id');
                 if( !elementID ) {
                     elementID = Math.floor( Math.random() * 100 ) + 1;
                     thisElement.attr('id', elementID);
                 }
-                var placeholderText     = thisElement.attr('placeholder');
-                var floatingText        = thisElement.data('label');
-                var extraClasses        = thisElement.data('class');
+                floatingText        = thisElement.data('label');
+                extraClasses        = thisElement.data('class');
                 if( !extraClasses ) { extraClasses = ''; }
-                if( !placeholderText || placeholderText === '' ) { placeholderText = "You forgot to add placeholder attribute!"; }
                 if( !floatingText || floatingText === '' ) { floatingText = placeholderText; }
                 this.inputPaddingTop    = parseFloat( thisElement.css('padding-top') ) + parseFloat(settings.paddingOffset);
                 thisElement.wrap('<div class="floatlabel-wrapper" style="position:relative"></div>');
@@ -72,7 +77,7 @@
                     'font-weight'                   : 'bold',
                     'color'                         : self.settings.blurColor
                 });
-                if( !settings.slideInput ) {                    
+                if( !settings.slideInput ) {
                     thisElement.css({ 'padding-top' : this.inputPaddingTop });
                 }
                 thisElement.on('keyup blur change', function( e ) {
@@ -89,9 +94,9 @@
             checkValue: function( e ) {
                 if( e ) {
                     var keyCode         = e.keyCode || e.which;
-                    if( keyCode === 9 ) { return; }                
+                    if( keyCode === 9 ) { return; }
                 }
-                var thisElement  = this.$element, 
+                var thisElement  = this.$element,
                     currentFlout = thisElement.data('flout');
                 if( thisElement.val() !== "" ) { thisElement.data('flout', '1'); }
                 if( thisElement.val() === "" ) { thisElement.data('flout', '0'); }
