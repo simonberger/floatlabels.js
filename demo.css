@@ -1,13 +1,13 @@
 .floatlabel-wrapper {
-   position: relative;
+    position: relative;
+    display: inline-block;
 }
 
 .floatlabel-wrapper .floatlabel-label {
     position: absolute;
     left: 8px;
     font-size: 11px;
-    font-weight: bold;
-    color: #2996cc !important;
+    color: #2996cc;
     z-index: 9999;
 
     -webkit-transition: all 1.2s ease-in-out;
@@ -18,12 +18,13 @@
 }
 
 .floatlabel-wrapper .floatlabel-label.floatlabel-label-focus {
-    color: #838780 !important;
+    color: #838780;
 }
 
 .floatlabel-wrapper .floatlabel-label-inactive {
     display: none;
-    top: 0px;
+    top: 0;
+
     -moz-opacity: 0;
     -khtml-opacity: 0;
     -webkit-opacity: 0;
@@ -31,8 +32,8 @@
 }
 
 .floatlabel-wrapper .floatlabel-label-active {
-    top: 12px;
-    display: block;
+    display: inline-block;
+    top: 6px;
     -moz-opacity: 1;
     -khtml-opacity: 1;
     -webkit-opacity: 1;
@@ -40,8 +41,6 @@
 }
 
 .floatlabel-wrapper input.floatlabel-input {
-    padding-top: 10px  !important;
-
     -webkit-transition: all 1.2s ease-in-out;
     -moz-transition: all 1.2s ease-in-out;
     -o-transition: all 1.2s ease-in-out;
@@ -50,5 +49,5 @@
 }
 
 .floatlabel-wrapper input.floatlabel-input-slide {
-    padding-top: 22px !important;
+    padding-top: 20px !important;
 }
